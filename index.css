@@ -35,6 +35,22 @@ list-style: none;
 margin-top: 50px;
 padding: 0 10px ;
 }
+.sidebar .sidebtn{
+    text-decoration: none;
+    cursor: pointer;
+    margin: 6px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center ;
+    transition: 0.5s ease;
+    color:#ffff ;
+    border-bottom: 1px solid;
+    text-transform: uppercase;
+}
+.sidebar .sidebtn:hover{
+    background: #d99763;
+}
+/* 
 .sidebar li{
     border-bottom: 1px solid;
     text-transform: uppercase;
@@ -50,25 +66,25 @@ padding: 0 10px ;
 }
 .sidebar ul li:hover{
     background: #d99763;
-}
+} */
 input{
     display: none;
     visibility: hidden;
     
 
 }
-.toggle{
+.toggle {
     position: fixed;
     height: 60px;
     width: 150px;
-    z-index: 1;
+    /* z-index: 2;  */
     cursor: pointer;
     top: 400px;
     background-color: #9a4027;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.toggle .common{
+.toggle .common {
     position: absolute;
     height: 2px;
     width: 30px;
@@ -76,55 +92,64 @@ input{
     border-radius: 50px;
     transition: 0.3s ease;
 }
-.toggle .top_line{
+/* 
+.toggle .top_line {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.toggle .middle_line{
+
+.toggle .middle_line {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.toggle .bottom_line{
+.toggle .bottom_line {
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-input:checked ~ .toggle .top_line{
+} */
+
+/* 
+input:checked ~ .toggle .top_line {
     left: 2px;
     top: 14px;
     width: 25px;
     transform: rotate(-45deg);
-
 }
-input:checked ~ .toggle .middle_line{
+
+input:checked ~ .toggle .middle_line {
     left: 2px;
     top: 14px;
     width: 25px;
     transform: rotate(45deg);
-
 }
-input:checked ~ .toggle .bottom_line{
+
+input:checked ~ .toggle .bottom_line {
     left: 2px;
     top: 14px;
     width: 25px;
     transform: rotate(-45deg);
+} */
 
-}
-input:checked ~ .sidebar{
-   transform: translateX(0);
 
+input:checked ~ .sidebar {
+    transform: translateX(0);
 }
-.sidebar{
+
+
+.sidebar {
     height: 100%;
     width: 150px;
-    position: absolute;
+    position: fixed; 
     background-color: #ffff;
     transition: 0.5s ease;
     transform: translateX(-400px);
+    z-index: 1; 
+    pointer-events: auto; 
 }
+
 
 .header {
     position: fixed;
@@ -203,14 +228,13 @@ input:checked ~ .sidebar{
     display: inline-block;
     padding: 15px 28px;
     background: #d99763;
-   
     border-radius: 6px;
     color: white;
     letter-spacing: 1px;
     text-decoration: none;
     font-weight: 600;
-
 }
+
 .btn:hover{
     background: #9a4027;
   
@@ -339,3 +363,142 @@ footer {
     background-size: cover;
 }
 /*  Contact form */
+
+.main-contactform {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 50px 10%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #ccc;
+    gap: 30px; 
+}
+
+.form-container {
+    flex: 1; 
+}
+
+.contact-list-container {
+    flex: 1; 
+    margin-top: 40px;
+}
+.name-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    display: block;
+    font-weight: bold;
+}
+
+
+
+input[type="text"], select, textarea {
+    width: 100%; 
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    background-color: #222;
+    color: #fff;
+}
+
+button.send-button {
+    background-color: #d99763;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+button.send-button:hover {
+    background-color: #9a4027;
+}
+
+.contact-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-item {
+    margin-bottom: 15px; 
+}
+
+.list-item i {
+    margin-right: 10px; 
+}
+
+.contact-text {
+    font-size: 16px;
+}
+
+  
+  .place {
+    margin-left: 62px;
+  }
+  
+  .phone {
+    margin-left: 56px;
+  }
+  
+  .gmail {
+    margin-left: 53px;
+  }
+  
+  .contact-text a {
+    color: #bbb;
+    text-decoration: none;
+    transition-duration: 0.2s;
+  }
+  
+  .contact-text a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  hr {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .alt-send-button {
+    width: 100px;
+    height: 30px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .send-text {
+    display: block;
+    margin-top: 10px;
+    font: 700 12px 'Lato', sans-serif;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .send-button {
+    text-align: center;  
+    display: flex;        
+    justify-content: center; 
+    align-items: center;  
+    width: 100%;           
+}

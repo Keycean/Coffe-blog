@@ -1,55 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-    <link href="index.css" rel="stylesheet">
-</head>
-<body style="background-color: #04020b;">
-  <div class="container"> 
-    <header class="header">
-           
-      <a class="logo" href="/">Coffean.</a>
-      <nav class="navbar">      
-        <a href="/">Home</a>
-        <a href="aboutme.html">About me</a>
-        <a href="education.html">Education</a>
-        <a href="" class="active">Contact</a>
-      </nav>
-      <div></div>
-</header>
+    <link href="index.css" rel="stylesheet" />
+  </head>
+  <body style="background-color: #04020b">
+    <div class="container">
+      <header class="header">
+        <a class="logo" href="/">Coffean.</a>
+        <nav class="navbar">
+          <a href="/">Home</a>
+          <a href="aboutme.html">About me</a>
+          <a href="education.html">Education</a>
+          <a href="" class="active">Contact</a>
+        </nav>
+        <div></div>
+      </header>
 
-
-
-
-<main >
-    <div   
-    class="contact-form">
-       <h2>Contact Us</h2>
-       <form action="your-form-handler.php" method="post">
-         <label for="name">Name:</label>
-         <input type="text" id="name" name="name" required>
-         <label for="email">Email:</label>   
-   
-         <input type="email" id="email" name="email" required>
-         <label for="message">Message:</label>
-         <textarea id="message" name="message" rows="5" required></textarea>
-         <button type="submit">Send</button>
-       </form>   
-   
-     </div>
-   
-
-</main>
-<footer>
-
-</footer>
-
-
-  </div>
-       
+      <main>
+        <section class="main-contactform">
+            <div class="form-container">
+                <h2 class="contact-header">Get in Touch</h2> <!-- Optional header -->
+                <form action="/action_page.php">
+                  <div class="name-container">
+                    <div class="form-group">
+                        
+                        <textarea type="text" id="first-name" placeholder="First Name" name="first_name" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        
+                      <textarea type="text" id="last-name" placeholder="Last Name" name="last_name" required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <select name="">
+                        <option value="">Iloilo</option>
+                        <option value="">Aklan</option>
+                        <option value="">Cebu</option>
+                        <option value="">Guimaras</option>
+                        <option value="">Manila</option>
+                        <option value="">Capiz</option>
+                        <option value="">Negros</option>
+                    </select>
+                </div>
+                
+                  
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="WRITE SOMETHING.." style="height:200px" required></textarea>
+                    </div>
+                    <button class="btn btn-primary send-button" type="submit">
+                        <div class="alt-send-button">
+                            <span class="send-text">SEND</span>
+                        </div>
+                    </button>
+                </form>
+            </div>
+            <div class="contact-list-container">
+                <ul class="contact-list">
+                    <li class="list-item">
+                       
+                            <span class="contact-text place">Address: Pavia, Iloilo</span>
+                        </i>
+                    </li>
+                    <li class="list-item">
+                       
+                            <span class="contact-text phone">
+                                <a href="#" title="Give me a call">Phone: 09294291294</a>
+                            </span>
+                        </i>
+                    </li>
+                    <li class="list-item">
+                        
+                            <span class="contact-text gmail">
+                                <a href="#" title="Send me an email">Email: Coffean@gmail.com</a>
+                            </span>
+                        </i>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+        </section>
+    </main>
     
-</body>
+ 
+
+    </div>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Mission</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Tutorials</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <ul>
+            <li>Email: Coffean@gmail.com</li>
+            <li>Phone: 09294291294</li>
+            <li>Address: Pavia, Iloilo</li>
+          </ul>
+        </div>
+      </div>
+      <p style="color:#d99763">&copy; 2024 Coffean</p>
+    </footer>
+  </body>
 </html>
