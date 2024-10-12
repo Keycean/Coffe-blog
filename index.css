@@ -510,7 +510,6 @@ button.send-button:hover {
     align-items: center;  
     width: 100%;           
 }
-<<<<<<< HEAD
 .blog-header{
     height: 100px; 
     background-color: #f1f1f1;
@@ -749,5 +748,14 @@ button.send-button:hover {
   background-color: black  ;
   color: white;
 }
-=======
->>>>>>> 65c48ecc201ac2e8b61ea36d3b02acb059032161
+.related-coffee{
+    display: flex;
+}
+.related-coffee .related-container{
+    margin: auto;
+}
+.related-coffee .text-title{
+
+    font-size: 10px;
+
+}
