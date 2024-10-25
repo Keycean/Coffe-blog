@@ -11,11 +11,12 @@
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="login.php" method="post" class="sign-in-form">
+          <!-- Login Form -->
+        <form action="login.php" method="POST" class="sign-in-form">
           <h2 class="title">Sign in</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="email" name="email" placeholder="Email">
+            <input type="email" name="email" id="email" placeholder="Email">
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
@@ -23,8 +24,8 @@
           </div>
           <input type="submit" value="Login" name="Login" class="btn solid" />
         </form>
-
-        <form action="login.php" method="post" class="sign-up-form">
+             <!-- Sign Up form -->
+        <form action="signup.php" method="POST" class="sign-up-form">
           <h2 class="title">Sign up</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
@@ -40,6 +41,8 @@
           </div>
           <input type="submit" class="btn" value="Sign up" name="Sign up" />
         </form>
+
+
       </div>
     </div>
 
