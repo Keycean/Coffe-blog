@@ -1,8 +1,19 @@
 <!-- Features -->
 # Content(Blog Post) Management  [x]
-# Post Category  [x]
-# User Login  [x]
-# Like   [x]
+
+
+
+<!-- Admin -->
+# Admin Login  []
+# admin dashboard
+# Post Category  []
+# Like   [] 
+<!-- User -->
+# User Login  []
+# User dashboard
+# Like   []
 # Comments [x]
-# Latest Posts [x]
-# Related  [x]
+
+<!-- front page -->
+# Related Post [x]
+# Top 5 Latest Posts [x]

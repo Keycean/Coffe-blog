@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Initialize error message
+$error = "";
+
+// Check if there is an error message in the session
+if (isset($_SESSION["error"])) {
+    $error = $_SESSION["error"];
+    unset($_SESSION["error"]); // Clear the error after displaying
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,17 +24,21 @@
     <div class="forms-container">
       <div class="signin-signup">
           <!-- Login Form -->
+       
         <form action="login.php" method="POST" class="sign-in-form">
           <h2 class="title">Sign in</h2>
+          <?php if (!empty($error)): ?>
+    <p style="color:red; "><?php echo htmlspecialchars($error); ?></p>
+<?php endif; ?>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="email" name="email" id="email" placeholder="Email">
+            <input type="username" name="username" id="username" placeholder="username">
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" id="password" name="password" placeholder="Password" required />
-          </div>
-          <input type="submit" value="Login" name="Login" class="btn solid" />
+          </div>  
+          <input type="submit" value="Login" name="signIn" class="btn solid" />
         </form>
              <!-- Sign Up form -->
         <form action="signup.php" method="POST" class="sign-up-form">
@@ -39,7 +55,7 @@
             <i class="fas fa-lock"></i>
             <input type="password" id="password" name="password" placeholder="Password" required />
           </div>
-          <input type="submit" class="btn" value="Sign up" name="Sign up" />
+          <input type="submit" class="btn" value="Sign up" name="signUp" />
         </form>
 
 
