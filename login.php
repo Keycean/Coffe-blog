@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $_SESSION["username"] = $username;
               $_SESSION["usertype"] = "admin";
                 header("Location: admin.php");
-                exit();
+                exit(); 
             }
         } else {
             // Redirect to userlogin.php with an error message

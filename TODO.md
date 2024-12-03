@@ -1,13 +1,11 @@
 <!-- Features -->
 # Content(Blog Post) Management  [x]
-
-
-
-<!-- Admin -->
+<!-- Admin Panel -->
 # Admin Login  []
-# admin dashboard
+# admin dashboard []
 # Post Category  []
 # Like   [] 
+
 <!-- User -->
 # User Login  []
 # User dashboard

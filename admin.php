@@ -1,6 +1,6 @@
 <?php
 require './middleware/adminMiddleware.php';
-
+include "config.php";
 checkAdminAccess();
 
 if(!isset($_SESSION["username"]))
@@ -10,240 +10,236 @@ if(!isset($_SESSION["username"]))
   exit();
 }
 ?>
-
 <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Home</title>
-      <link href="category.css" rel="stylesheet" />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-      />
-    </head>
-    <body>
-      <div class="container">
-        <header class="header">
-          <a class="logo" href="/">Coffean.</a>
-          <nav class="navbar">
-           
-            <a href="logout.php" >Logout</a>
-          </nav>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffean Admin</title>
+  <style>
+    /* General styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      background-color: #222;
+      display: flex;
+      overflow-x: hidden;
+    }
 
-          <div></div>
-        </header>
+    /* Sidebar */
+    .sidebar {
+      width: 160px;
+      background-color: #111;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s ease-in-out;
+    }
 
-        <main>
-       
-        
-        </main>
-        <!-- Blog start here  -->
-        <div class="blog-header">
-          <div class="blog-title">
-            <div class="blog-title1">
-              <span class="blog-span1">BLOG</span>
-              <span  class="blog-span2">POST</span>
-            </div>
-          </div>
-        </div>
+    .sidebar.hidden {
+      transform: translateX(-100%);
+    }
 
-        <div class="blog-container">
-          <!-- Left Sidebar -->
-          <div class="left-sidebar">
-            <div class="sidebar-profile-box"></div>
-          </div>
+    .sidebar h1 {
+      font-size: 24px;
+      color: #ff8c00;
+      margin-bottom: 30px;
+    }
 
-          <!-- Main content -->
-            <div class="blog-content">
-              <div class="create-post">
-                <div class="create-post-input">
-                  <img src="image/caramel.jpg" />
-                  <textarea rows="2" placeholder="Write a post" id="postContent" ></textarea>
-                </div>
-                <div class="create-post-links">
-                  <li><img src="/image/photo.png" />Photo</li>
-                  <li><img src="/image/video.png" />Video</li>
-                  <li><img src="/image/event.png" />Event</li>
-                  <li id="postButton">Post</li>
-                </div>
-              </div>
-              <div class="sort-by">
-                <hr />
-                <p>
-                  Sort by: <span> top <img src="image/down-arrow.png" /></span>
-                </p>
-              </div>
-              <div id="postsContainer" class="post-Container"></div>
-             
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 10px 0;
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+    }
 
-            
-            <!-- Related coffee? -->
-            
+    .sidebar a:hover {
+      background-color: #333;
+    }
 
-            <div class="post">
-              <div class="post-author">
-                <img src="image/user1.png" />
-                <div>
-                  <h1>Keycean Klyk Seneres</h1>
-                  <small>Founder of Coffean</small>
-                  <small>2 hours ago </small>
-                </div>
-              </div>
-              <p>"Coffee is a beverage that brings people together."</p>
-              <img src="image/croissant.jpg" width="100%" />
+    /* Main content */
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      width: 100%;
+      transition: margin-left 0.3s ease-in-out;
+    }
 
-              <div class="post-stats">
-                <div>
-                  <img src="image/like.png" class="like" />
-                  <img src="image/love.png" />
-                  <img src="image/wow.png" class="wow" />
-                  <span class="liked-users">Keycean Seneres and 2.3k others</span>
-                </div>
-                <div>
-                  <span>3 comments &middot; 41 shares </span>
-                </div>
-              </div>
+    .main-content.shifted {
+      margin-left: 0;
+    }
 
-              <div class="post-activity">
-                <div>
-                  <img src="image/user1.png" class="post-activity-user-icon" />
-                  <img
-                    src="image/down-arrow.png"
-                    class="post-activity-arrow-icon"
-                  />
-                </div>
-                <div class="post-activity-link">
-                  <img src="image/like.png" />
-                  <span>Like</span>
-                </div>
-                <div class="post-activity-link">
-                  <img src="image/comment.png" />
-                  <span>Comment</span>
-                </div>
-                <div class="post-activity-link">
-                  <img src="image/share.png" />
-                  <span>Share</span>
-                </div>
-                <div class="post-activity-link">
-                  <img src="image/send.png" />
-                  <span>Send</span>
-                </div>
-              </div>
-              <!-- Comments here -->
-              <div class="post-author">
-  
-                <img src="image/user6.png" />
-                <div >
-                  <h1>Anna</h1>
-                  <p>Wow!! This is great!</p>
-                </div>
-              </div>
-              <div class="post-author">
-                <img src="image/user4.jpg" />
-                <div>
-                  <h1>Mark</h1>
-                  <p>Wow!! This is great!</p>
-                </div>
-              </div>
-              <div class="post-author ">
-                <img src="image/user5.jpg" />
-                <div >
-                  <h1>Demi</h1>
-                  <p>Wow!! This is great!</p>
-                </div>
-              </div>  
-           
-              
-            </div>
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
-            <div class="post">
-              <div class="post-author">
-                <img src="image/george.jpg" />
-                <div>
-                  <h1>George loves coffee</h1>
-                  <small>Coffee lover</small>
-                  <small>8 sec ago </small>
-                </div>
-              </div>
-              <p>
-                Watching the rain fall while sipping a cup of coffee can be a
-                relaxing and meditative experience.
-              </p>
-              <img src="image/rainycoffee.jpg" width="100%" />
+    .header h2 {
+      margin: 0;
+    }
 
-              <div class="post-stats">
-                <div>
-                  <img src="image/like.png" class="like" />
-                  <img src="image/love.png" />
-                  <img src="image/wow.png" class="wow" />
-                  <span class="liked-users">Gojo and 1.1k others</span>
-                </div>
-                <div>
-                  <span>22 comments &middot; 40 shares </span>
-                </div>
-              </div>
+    .header .profile {
+      background-color: #ff8c00;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: #111;
+    }
 
-              <div class="post-activity">
-                <div>
-                  <img src="image/user2.jpg" class="post-activity-user-icon" />
-                  <img
-                    src="image/down-arrow.png"
-                    class="post-activity-arrow-icon"
-                  />
-                </div>
-                <div class="post-activity-link">
-                  <img src="image/like.png" />
-                  <span>Like</span> 
-                </div>
-                <div class="post-activity-link">
-                  <img src="image/comment.png" />
-                  <span>Comment</span>
-                </div>
-                <div class="post-activity-link">
-                  <img src="image/share.png" />
-                  <span>Share</span>
-                </div>
-                <div class="post-activity-link">
-                  <img src="image/send.png" />
-                  <span>Send</span>
-                </div>
-              </div>
-              <div class="post-author">
-                <img src="image/lufy.jpg" />
-                <div>
-                  <h1>Lopi</h1>
-                  <p>Wow!! This is great!</p>
-                </div>
-              </div>
-            </div>
+    .menu-toggle {
+      background-color: #ff8c00;
+      color: #111;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      display: none;
+    }
 
-          
-          </div>
-          <!-- Rightsidebar -->
+    .menu-toggle.visible {
+      display: block;
+    }
 
-          <div class="right-sidebar">
-            <div class="sidebar-news">
-              <img src="" class="info-icon" />
+    /* Form styling */
+    .form-container {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
-          
-              
-            
-            
-             
-              </div>
-            </div>
-          </div>
-          
-        </div>
-        
+    .form-container label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
 
-      
+    .form-container input,
+    .form-container textarea,
+    .form-container select,
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      background-color: #444;
+      color: #fff;
+    }
 
+    .form-container textarea {
+      height: 100px;
+      resize: none;
+    }
 
-      <script src="category.js"></script>
-    </body>
-  </html>
+    .form-container button {
+      width: auto;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
 
+    .form-container .btn-save {
+      background-color: #4CAF50;
+      border: none;
+    }
+
+    .form-container .btn-cancel {
+      background-color: #f44336;
+      border: none;
+    }
+
+    .form-container button:hover {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        transform: translateX(-100%);
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .menu-toggle.visible {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h1>Coffean.</h1>
+    <a href="#">Dashboard</a>
+    <a href="#">Post</a>
+    <a href="#">Categories</a>
+    <a href="#">Blog</a>
+    <a href="#">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="main-content">
+    <div class="header">
+   
+      <h2>Create Post</h2>
+      <div class="profile">A</div>
+    </div>
+    <div class="form-container">
+      <form action="#" method="post" enctype="multipart/form-data">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter post title">
+
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category" placeholder="Enter category">
+
+        <label for="tags">Tags</label>
+        <input type="text" id="tags" name="tags" placeholder="Enter tags (comma separated)">
+
+        <label for="content">Content</label>
+        <textarea id="content" name="content" placeholder="Write your post content here..."></textarea>
+
+        <label for="photo">Photo</label>
+        <input type="file" id="photo" name="photo">
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" value="2024-12-03">
+
+        <label for="status">Status</label>
+        <select id="status" name="status">
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
+
+        <button type="button" class="btn-cancel">Cancel</button>
+        <button type="submit" class="btn-save">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+     const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menu-toggle');
+
+    menuToggle.addEventListener('click', () => {
+      // Toggle visibility of the sidebar
+      sidebar.classList.toggle('hidden');
+    });
+
+  </script>
+</body>
+</html>
