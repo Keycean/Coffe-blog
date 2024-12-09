@@ -1,14 +1,10 @@
 <?php
-require './middleware/adminMiddleware.php';
-include "config.php";
-$result = $db->query("SELECT * FROM posts ORDER BY date DESC");
-checkAdminAccess();
+// Database connection
+$conn = new mysqli("localhost", "root", "", "imnotadev");
 
-if(!isset($_SESSION["username"]))
-{
-  $_SESSION["error"] = "You do not have admin access.";
-	header("location:userlogin.php");
-  exit();
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
 <!DOCTYPE html>
@@ -186,24 +182,58 @@ if(!isset($_SESSION["username"]))
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Coffean.</h1>
-    <a href="#">Dashboard</a>
-    <a href="addpost.php">Post</a>
+    <a href="admin.php">Dashboard</a>
+    <a href="#">Post</a>
     <a href="#">Categories</a>
     <a href="#">Blog</a>
     <a href="logout.php">Logout</a>
   </div>
 
   <!-- Main Content -->
+  <div class="main-content" id="main-content">
+    <div class="header">
+   
+      <h2>Create Post</h2>
+      <div class="profile">A</div>
+    </div>
+    <div class="form-container">
+      <form action="save_post.php" method="post" enctype="multipart/form-data">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter post title">
+
+        <label for="category">Category:</label>
+        <select name="category" id="category" required>
+            <option value="">Select a Category</option>
+            <?php
+            // Fetch categories from database
+            $result = $conn->query("SELECT id, name FROM categories");
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                }
+            } else {
+                echo "<option value=''>No categories available</option>";
+            }
+            ?>
+        </select>
+
+        <label for="content">Content</label>
+        <textarea id="content" name="content" placeholder="Write your post content here..."></textarea>
+
+        <label for="photo">Photo</label>
+        <input type="file" id="photo" name="photo">
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" value="2024-12-03">
+
+     
+
   
+        <button type="submit" class="btn-save">Submit</button>
+      </form>
+    </div>
+  </div>
 
-  <script>
-     const sidebar = document.getElementById('sidebar');
-    const menuToggle = document.getElementById('menu-toggle');
-
-    menuToggle.addEventListener('click', () => {
-      // Toggle visibility of the sidebar
-      sidebar.classList.toggle('hidden');
-    });
 
   </script>
 </body>

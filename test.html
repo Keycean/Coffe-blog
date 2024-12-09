@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffean</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<Style>
+  /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Container Layout */
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "sidebar content related";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Sidebar */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    margin-bottom: 10px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 5px;
+    transition: color 0.2s ease;
+}
+
+.sidebar nav a:hover {
+    color: #f4a261;
+}
+
+.subcategory {
+    margin-left: 15px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Main Content */
+.content {
+    grid-area: content;
+}
+
+.latest-post {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.admin-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.post-description {
+    margin: 10px 0;
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.comments {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Related Section */
+.related {
+    grid-area: related;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.related-item {
+    margin-bottom: 20px;
+}
+
+.related-item .placeholder {
+    width: 100%;
+    height: 100px;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.related-item button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+</Style>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Coffean.</h1>
+            <div class="user-profile">
+                <img src="user-icon.png" alt="User" class="user-icon">
+                <span>User</span>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <h3>All categories</h3>
+            <nav>
+                <a href="#">Coffee</a>
+                <div class="subcategory">
+                    <a href="#">Hot Coffee</a>
+                    <a href="#">Iced Coffee</a>
+                </div>
+                <a href="#">Tea</a>
+                <div class="subcategory">
+                    <a href="#">Iced Tea</a>
+                    <a href="#">Hot Tea</a>
+                </div>
+                <a href="#">Food</a>
+                <div class="subcategory">
+                    <a href="#">Breakfast</a>
+                    <a href="#">Lunch</a>
+                    <a href="#">Snacks</a>
+                </div>
+                <a href="#">Other offering</a>
+                <div class="subcategory">
+                    <a href="#">Coffee Beans</a>
+                    <a href="#">Merchandise</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section class="latest-post">
+                <h2>Latest post</h2>
+                <div class="post">
+                    <div class="post-header">
+                        <img src="admin-icon.png" alt="Admin" class="admin-icon">
+                        <div>
+                            <p>Admin</p>
+                            <p>12/4/2024</p>
+                        </div>
+                    </div>
+                    <p class="post-description">Watching the rain fall while sipping a cup of coffee can be a relaxing and meditative experience.</p>
+                    <img src="coffee-photo.jpg" alt="Coffee" class="post-image">
+                    <div class="post-footer">
+                        <span>👤 User 2.1k and others</span>
+                        <span>3 comments</span>
+                    </div>
+                    <div class="comments">
+                        <p><strong>Kero:</strong> Wow!</p>
+                        <p><strong>Kairi:</strong> Wows!</p>
+                        <p><strong>Kopi:</strong> WowSSS</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="related">
+            <h3>Related</h3>
+            <div class="related-item">
+                <div class="placeholder"></div>
+                <button>Find similar</button>
+            </div>
+            <div class="related-item">
+                <div class="placeholder"></div>
+                <button>Find similar</button>
+            </div>
+            <div class="related-item">
+                <div class="placeholder"></div>
+                <button>Find similar</button>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>
