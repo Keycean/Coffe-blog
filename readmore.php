@@ -300,17 +300,18 @@ document.querySelectorAll('.like-btn').forEach(button => {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'liked') {
-                this.textContent = 'Unlike';
+                this.textContent = 'Liked';
                 this.dataset.liked = 'true';
-            } else if (data.status === 'unliked') {
-                this.textContent = 'Like';
-                this.dataset.liked = 'false';
-            }
 
-            // Update like count (read directly from the span)
-            const likeCountSpan = postElement.querySelector('.like-count');
-            let count = parseInt(likeCountSpan.textContent, 10);
-            likeCountSpan.textContent = data.status === 'liked' ? count + 1 : count - 1;
+                // Update like count
+                const likeCountSpan = postElement.querySelector('.like-count');
+                likeCountSpan.textContent = data.like_count;
+            } else if (data.status === 'already_liked') {
+                alert(data.message); // Inform the user they already liked the post
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
     });
 });

@@ -1,66 +1,50 @@
 <?php
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "imnotadev";
+
 session_start();
 
-$db_host = 'localhost';
-$db_user = 'root';
-$db_pass = '';
-$db_name = 'imnotadev';
+$data = mysqli_connect($host, $user, $password, $db);
 
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($data === false) {
+    die("Connection error");
 }
 
-if (!isset($_SESSION["user_id"])) {
-    echo json_encode(['error' => 'User not logged in']);
-    exit();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($data, $_POST["username"]);
+    $password = mysqli_real_escape_string($data, $_POST["password"]);
+
+    $sql = "SELECT * FROM users WHERE username='$username'";
+    $result = mysqli_query($data, $sql);
+
+    if ($row = mysqli_fetch_array($result)) {
+        // Verify password (use password_verify if hashed)
+        if ($row["password"] === $password) {
+            $_SESSION["username"] = $username;
+            $_SESSION["user_id"] = $row["id"]; // Store user ID for later use
+            if ($row["usertype"] == "user") {
+            
+                header("Location: user.php");
+                exit();
+            } elseif ($row["usertype"] == "admin") {
+              $_SESSION["username"] = $username;
+    
+              $_SESSION["usertype"] = "admin";
+                header("Location: admin.php");
+                exit(); 
+            }
+        } else {
+            // Redirect to userlogin.php with an error message
+            $_SESSION["error"] = "Password Incorrect"; // or "Incorrect password"
+            header("Location: userlogin.php");
+            exit();
+        }
+    } else {
+      $_SESSION["error"] = "Username does not exist"; // or "Incorrect password"
+      header("Location: userlogin.php");
+      exit();
+    }
 }
-
-$user_id = $_SESSION["user_id"];
-$post_id = isset($_POST['post_id']) ? (int)$_POST['post_id'] : 0;
-
-if ($post_id <= 0) {
-    echo json_encode(['error' => 'Invalid post ID']);
-    exit();
-}
-
-// Check if the user has already liked the post
-$sql = "SELECT 1 FROM likes WHERE user_id = ? AND post_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('ii', $user_id, $post_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    // Unlike the post
-    $sql = "DELETE FROM likes WHERE user_id = ? AND post_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ii', $user_id, $post_id);
-    $stmt->execute();
-
-    // Decrement the like count in the posts table
-    $sql = "UPDATE posts SET likes = likes - 1 WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $post_id);
-    $stmt->execute();
-
-    echo json_encode(['status' => 'unliked']);
-} else {
-    // Like the post
-    $sql = "INSERT INTO likes (user_id, post_id) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ii', $user_id, $post_id);
-    $stmt->execute();
-
-    // Increment the like count in the posts table
-    $sql = "UPDATE posts SET likes = likes + 1 WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $post_id);
-    $stmt->execute();
-
-    echo json_encode(['status' => 'liked']);
-}
-
-$conn->close();
-exit();
+?>
