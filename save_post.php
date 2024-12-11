@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("sssss", $title, $category, $content, $photo, $date);
 
     if ($stmt->execute()) {
-        echo "Post created successfully!";
+       header ("location: addpost.php");
     } else {
         echo "Error: " . $stmt->error;
     }

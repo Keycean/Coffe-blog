@@ -39,24 +39,12 @@ if ($result->num_rows > 0) {
     $stmt->bind_param('ii', $user_id, $post_id);
     $stmt->execute();
 
-    // Decrement the like count in the posts table
-    $sql = "UPDATE posts SET likes = likes - 1 WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $post_id);
-    $stmt->execute();
-
     echo json_encode(['status' => 'unliked']);
 } else {
     // Like the post
     $sql = "INSERT INTO likes (user_id, post_id) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('ii', $user_id, $post_id);
-    $stmt->execute();
-
-    // Increment the like count in the posts table
-    $sql = "UPDATE posts SET likes = likes + 1 WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $post_id);
     $stmt->execute();
 
     echo json_encode(['status' => 'liked']);

@@ -17,7 +17,7 @@
         <a class="logo" href="/">Coffean.</a>
         <nav class="navbar">
           <a href="" class="active">Home</a>
-          <a href="category.html">Our Posts</a>
+          <a href="blogpost.php">Our Posts</a>
           <a href="contact.html">Contact</a>
           <a href="userlogin.php" target="_blank">Login</a>
         </nav>
@@ -55,7 +55,7 @@
           </div>
         </section>
       </main>
-      <!-- Blog start here  -->
+      Blog start here 
       <div class="blog-header">
         <div class="blog-title">
           <div class="blog-title1">

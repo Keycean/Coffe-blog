@@ -18,7 +18,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT title, content, photo, date FROM posts ORDER BY id DESC LIMIT 5";
+$sql = "SELECT id, title, content, photo, date FROM posts ORDER BY id DESC LIMIT 5";
 $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -65,22 +65,32 @@ if ($result && $result->num_rows > 0) {
     </aside>
 
     <main>
-        <div class="slider-container">
-            <div>Top 5 Latest Posts</div>
-            <div class="slider">
-                <?php foreach ($latest_posts as $post): ?>
-                    <div class="slide">
-                        <img src="uploads/<?php echo htmlspecialchars($post['photo']); ?>" width="100%" alt="Post Image" class="slide-image">
-                        <h2 class="webinar-title"><?php echo htmlspecialchars($post['title']); ?></h2>
-                        <div class="webinar-meta">Published on: <?php echo htmlspecialchars($post['date']); ?></div>
-                        <button class="read-more">Read more</button>
-                    </div>
-                <?php endforeach; ?>
+       
+    <div class="slider-container">
+    <div>Top 5 Latest Posts</div>
+    <div class="slider">
+        <?php foreach ($latest_posts as $post): ?>
+            <div class="slide">
+                <img src="<?php echo htmlspecialchars($post['photo']); ?>" width="40%" height="auto" alt="Post Image" class="slide-image">
+                <h2 class="webinar-title"><?php echo htmlspecialchars($post['title']); ?></h2>
+                <div class="webinar-meta">Published on: <?php echo htmlspecialchars($post['date']); ?></div>
+                <div class="webinar-content">
+                    <?php echo htmlspecialchars($post['content']); ?>
+                </div>
+                
+                <a href="readmore.php?id=<?php echo htmlspecialchars($post['id']); ?>" class="read-more">Read more</a>
+
             </div>
-            <button class="nav-button prev">←</button>
-            <button class="nav-button next">→</button>
-            <div class="dots"></div>
-        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+        <button class="nav-button prev">←</button>
+        <button class="nav-button next">→</button>
+            <div class="dots">
+         
+            </div>
+           
     </main>
 </div>
 

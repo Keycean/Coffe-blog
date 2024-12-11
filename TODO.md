@@ -14,4 +14,3 @@
 
 <!-- front page -->
 # Related Post [x]
-# Top 5 Latest Posts [x]
